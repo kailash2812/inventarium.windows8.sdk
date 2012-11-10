@@ -1,7 +1,6 @@
 ﻿/* 
- * This control is based on Tim Heuers 
- * http://timheuer.com/blog/archive/201
- * Implementation by Michael Osthege =)
+ * This control is based on http://kuchenzeit.wordpress.com/2012/03/26/flyout-control-for-windows-8-metro-xamlc/
+ * recoded by inventarium team =)
  */
 
 using System;
@@ -11,12 +10,12 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.Xaml.Navigation;
 
-namespace TCD.Controls
+namespace Inventarium.Windows8.SDK
 {
     /// <summary>
-    /// Provides a 'Flyout' control with customizable Content, Theme and Title
+    /// Provides a 'InventariumFlyout' control with customizable Content, Theme and Title
     /// </summary>
-    public sealed partial class Flyout : UserControl
+    public sealed partial class InventariumFlyout : UserControl
     {
         //OnClosing
         public delegate void AddOnClosingDelegate(object sender, CloseReason reason);
@@ -30,20 +29,19 @@ namespace TCD.Controls
         private FlyoutDimension Dimension { get; set; }
 
         /// <summary>
-        /// Create a Flyout.
+        /// Create an InventariumFlyout.
         /// </summary>
         /// <param name="foreground">The color of Text and Border, NOTE: the BackButton color binds to the ApplicationTextBrush, so it's best to stick to that too.</param>
         /// <param name="background">Color of Background.</param>
         /// <param name="title">Header/Title</param>
         /// <param name="dimension">Width -> Narrow of Wide</param>
-        /// <param name="content">A control that contains the relevant content.</param>
+        /// <param name="url">url to open in browser.</param>
         /// <param name="image">optional: display an image next to the header</param>
-        public Flyout(
+        public InventariumFlyout(
             Brush foreground,
             Brush background,
             string title,
             FlyoutDimension dimension,
-            //UIElement content,
             string url,
             BitmapImage image = null)
         {
@@ -122,7 +120,7 @@ namespace TCD.Controls
     }
 
     /// <summary>
-    /// Reasons for a Flyout being closed.
+    /// Reasons for a InventariumFlyout being closed.
     /// </summary>
     public enum CloseReason
     {

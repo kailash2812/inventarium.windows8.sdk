@@ -1,23 +1,39 @@
 ﻿using System;
+using Inventarium.Windows8.SDK.Configuration;
+using Windows.UI;
+using Windows.UI.Xaml.Media;
 
-namespace Inventarium.Windows8.TestApp.SDK
+namespace Inventarium.Windows8.SDK
 {
-    //todo: move to separate lib
-
     public class InventariumFeedback
     {
+        public const string DefaultTitle = "Inventarium";
         public const string EmbedType = "windows8";
-        // instead using non-ssl version.
+        // using non-ssl version.
         internal const string AppHost = @"http://mapp.inventarium.mobi";
         private string CustomerKey { get; set; }
-        private const string KEY_ANONYM_USER = ".INVENTARIUM_KEY_ANONYM_USER";
 
-        public InventariumFeedback(string customerKey)
+        private readonly FlyoutCustomization flyoutCustomization;
+
+        public InventariumFeedback(string customerKey, FlyoutCustomization flyoutCustomization = null)
         {
             if (string.IsNullOrEmpty(customerKey))
                 throw new ArgumentException("customerKey must be specified");
 
             CustomerKey = customerKey;
+
+            if (flyoutCustomization == null)
+            {
+                this.flyoutCustomization = new FlyoutCustomization(
+                    new SolidColorBrush(Colors.White),
+                    new SolidColorBrush(Colors.Black),
+                    DefaultTitle,
+                    FlyoutDimension.Wide);
+            }
+            else
+            {
+                this.flyoutCustomization = flyoutCustomization;
+            }
         }
 
         /// <summary>
@@ -25,18 +41,29 @@ namespace Inventarium.Windows8.TestApp.SDK
         /// </summary>
         /// <param name="userEmail">The user email.</param>
         /// <param name="userFullName">Full name of the user.</param>
-        public Uri Start(string userEmail, string userFullName)
+        public void Start(string userEmail, string userFullName)
         {
             if (string.IsNullOrEmpty(userFullName))
                 throw new ArgumentException("userFullName must be specified");
 
-            return new Uri(GenerateUrl(userEmail, userFullName));
+            var url = GenerateUrl(userEmail, userFullName);
+
+            var inventariumFlyout = new InventariumFlyout(
+                this.flyoutCustomization.Foreground,
+                this.flyoutCustomization.Background,
+                this.flyoutCustomization.Title,
+                this.flyoutCustomization.Dimension,
+                url,
+                this.flyoutCustomization.Image
+                );
+
+            inventariumFlyout.Show();
         }
 
-        public Uri StartAnonymously()
+        public void StartAnonymously()
         {
             var user = GenerateRandomIdentity();
-            return Start(user.Email, user.Name);
+            Start(user.Email, user.Name);
         }
 
         private static User GenerateRandomIdentity()
