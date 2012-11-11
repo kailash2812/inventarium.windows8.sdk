@@ -53,12 +53,12 @@ namespace Inventarium.Windows8.SDK
             mainBorder.Width = (int)dimension;
             mainBorder.Height = Window.Current.Bounds.Height;
             //fill in the content
-            flyoutTitle.Text = title;
+            //flyoutTitle.Text = title;
             //contentPanel.Children.Add(content);
             smallImage.Source = image;
             //brush the controls according to the parameters
             mainBorder.BorderBrush = foreground;
-            flyoutTitle.Foreground = foreground;
+            //flyoutTitle.Foreground = foreground;
             mainFrame.Background = background;
 
             progressRing.IsActive = true;

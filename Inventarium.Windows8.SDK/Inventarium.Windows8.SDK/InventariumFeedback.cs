@@ -10,7 +10,8 @@ namespace Inventarium.Windows8.SDK
         public const string DefaultTitle = "Inventarium";
         public const string EmbedType = "windows8";
         // using non-ssl version.
-        internal const string AppHost = @"http://mapp.inventarium.mobi";
+        internal const string AppHost = @"http://inventarium-beta.cloudapp.net:662";
+        //internal const string AppHost = @"http://localhost:662";
         private string CustomerKey { get; set; }
 
         private readonly FlyoutCustomization flyoutCustomization;
@@ -26,7 +27,7 @@ namespace Inventarium.Windows8.SDK
             {
                 this.flyoutCustomization = new FlyoutCustomization(
                     new SolidColorBrush(Colors.White),
-                    new SolidColorBrush(Colors.Black),
+                    new SolidColorBrush(GetColorFromHexa("#FF232323")),
                     DefaultTitle,
                     FlyoutDimension.Wide);
             }
@@ -72,24 +73,34 @@ namespace Inventarium.Windows8.SDK
             var num = rnd.Next(10, 65365);
 
             return new User
-            {
-                Name = string.Format("User {0}", num),
-                Email = string.Format("user{0}@anonymous.com", num)
-            };
+                       {
+                           Name = string.Format("User {0}", num),
+                           Email = string.Format("user{0}@anonymous.com", num)
+                       };
         }
 
         private string GenerateUrl(string email, string fullName)
         {
             var url = string.Format("{0}/reg?customerKey={1}&email={2}&fullName={3}&embedType={4}",
-                           AppHost,
-                           Uri.EscapeDataString(CustomerKey),
-                           Uri.EscapeDataString(email),
-                           Uri.EscapeDataString(fullName),
-                           Uri.EscapeDataString(EmbedType));
+                                    AppHost,
+                                    Uri.EscapeDataString(CustomerKey),
+                                    Uri.EscapeDataString(email),
+                                    Uri.EscapeDataString(fullName),
+                                    Uri.EscapeDataString(EmbedType));
 
             return url;
         }
+
+        internal static Color GetColorFromHexa(string hexaColor)
+        {
+            return Color.FromArgb(
+                Convert.ToByte(hexaColor.Substring(1, 2), 16),
+                Convert.ToByte(hexaColor.Substring(3, 2), 16),
+                Convert.ToByte(hexaColor.Substring(5, 2), 16),
+                Convert.ToByte(hexaColor.Substring(7, 2), 16));
+        }
     }
+
 
     internal class User
     {
@@ -98,3 +109,4 @@ namespace Inventarium.Windows8.SDK
         public string Email { get; set; }
     }
 }
+

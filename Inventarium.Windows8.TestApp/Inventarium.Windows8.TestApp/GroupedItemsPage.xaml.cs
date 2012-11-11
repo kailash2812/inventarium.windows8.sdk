@@ -65,20 +65,7 @@ namespace Inventarium.Windows8.TestApp
 
         private void SendFeedBack(object sender, RoutedEventArgs e)
         {
-            /*
-            var invFeedback = new InventariumFeedbackCurrent("07d23075-dd33-4ac3-a832-2b73fffc3f54");
-            var uri = invFeedback.StartAnonymously();
-
-           var f = new Flyout(
-                new SolidColorBrush(Colors.White),
-                new SolidColorBrush(Colors.Black),
-                "Inventarium",
-                FlyoutDimension.Wide,
-                uri.ToString());
-
-            f.Show();
-             */
-            const string customerKey = "07d23075-dd33-4ac3-a832-2b73fffc3f54";
+            const string customerKey = "5621fab83aa743949c8db6198c68db1e";
          
             var inventariumFeedback = new InventariumFeedback(customerKey);
             inventariumFeedback.StartAnonymously();

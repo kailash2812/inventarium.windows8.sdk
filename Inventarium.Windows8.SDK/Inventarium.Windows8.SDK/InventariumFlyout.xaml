@@ -127,8 +127,8 @@
                             <ColumnDefinition Width="*" />
                             <ColumnDefinition />
                         </Grid.ColumnDefinitions>
-                        <Button Click="BackButton_Click" Margin="0,3,0,0" Grid.Column="0" Style="{StaticResource FlyoutBackButtonStyle}" HorizontalAlignment="Left" />
-                        <TextBlock x:Name="flyoutTitle" Margin="10,0,0,0" Grid.Column="1" FontFamily="Segoe UI" FontWeight="SemiLight" FontSize="24.6667" Text="Inventarium" HorizontalAlignment="Left" />
+                        <!--<Button Click="BackButton_Click" Margin="0,3,0,0" Grid.Column="0" Style="{StaticResource FlyoutBackButtonStyle}" HorizontalAlignment="Left" />-->
+                        <!--<TextBlock x:Name="flyoutTitle" Margin="10,0,0,0" Grid.Column="1" FontFamily="Segoe UI" FontWeight="SemiLight" FontSize="24.6667" Text="Inventarium" HorizontalAlignment="Left" />-->
                         <!--display the application logo if available-->
                         <Image x:Name="smallImage" HorizontalAlignment="Right" Grid.Column="2" Margin="0,0,6,0" />
                     </Grid>

@@ -34,7 +34,7 @@
             <RowDefinition Height="140"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-
+            
         <!-- Horizontal scrolling grid used in most view states -->
         <GridView
             x:Name="itemGridView"
